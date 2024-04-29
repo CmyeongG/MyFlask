@@ -1,3 +1,20 @@
+@font-face {
+  font-family: "KCC-Hanbit";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+html {
+  font-family: KCC-Hanbit;
+}
+
+html {
+  background-color: deepskyblue;
+}
+
 table {
   /* 인접하는 border를 겹쳐서 1개로 해서 표시한다 */
   border-collapse: collapse;
@@ -6,6 +23,7 @@ table {
 table,
 th,
 td {
-  width: 500px;
-  border: 1px solid #c0c0c0;
+  text-align: center;
+  width: auto;
+  border: 1px solid #000000;
 }

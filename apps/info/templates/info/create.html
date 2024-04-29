@@ -1,0 +1,17 @@
+{% extends 'info/base.html' %} {% block title %}사용자 신규 작성{% endblock %}
+{% block content %}
+<h2>사용자 신규 작성</h2>
+<form
+  action="{{ url_for('info.create_fish') }}"
+  method="POST"
+  novalidate="novalidate"
+>
+  {{ form.csrf_token }}
+  <p>{{ form.fishname.label }} {{ form.fishname(placeholder='생선명') }}</p>
+
+  <p>{{ form.season.label }} {{ form.season(placeholder="계절")}}</p>
+  <p>{{ form.etc.label }} {{ form.etc(placeholder='비고') }}</p>
+
+  <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}
