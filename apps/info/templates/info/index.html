@@ -1,35 +1,37 @@
 {% extends 'info/base.html' %} {% block title %}사용자 신규 작성{% endblock %}
 {% block content %}
-<h1>제철횟감이 알고 싶어(魚)!</h1>
-<p>제철의 숫자는 1:봄 2:여름 3:가을 4:겨울 5:그외(여러 계절) 입니다.</p>
+<div class="container">
+  <h1>제철횟감이 알고 싶어(魚)!</h1>
+  <p>제철의 숫자는 1:봄 2:여름 3:가을 4:겨울 5:그외(여러 계절) 입니다.</p>
 
-<form method="GET" action="{{ url_for('info.index' ) }}">
-  <button type="submit" name="season" value="">전체</button>
-  <button type="submit" name="season" value="1">봄</button>
-  <button type="submit" name="season" value="2">여름</button>
-  <button type="submit" name="season" value="3">가을</button>
-  <button type="submit" name="season" value="4">겨울</button>
-  <button type="submit" name="season" value="5">그외</button>
-</form>
-<br />
+  <form method="GET" action="{{ url_for('info.index' ) }}">
+    <button type="submit" name="season" value="">전체</button>
+    <button type="submit" name="season" value="1">봄</button>
+    <button type="submit" name="season" value="2">여름</button>
+    <button type="submit" name="season" value="3">가을</button>
+    <button type="submit" name="season" value="4">겨울</button>
+    <button type="submit" name="season" value="5">그외</button>
+  </form>
+  <br />
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>생선 이름</th>
-    <th>제철</th>
-    <th class="etc">비고</th>
-  </tr>
-  {% for f in fish %}
-  <tr>
-    <td>
-      <a href="{{ url_for('info.delete_fish', fish_id=f.id)}}">{{ f.id }}</a>
-    </td>
-    <td>{{ f.fishname }}</td>
-    <td>{{ f.season }}</td>
-    <td class="etc">{{ f.etc }}</td>
-  </tr>
-  {% endfor %}
-</table>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>생선 이름</th>
+      <th>제철</th>
+      <th class="etc">비고</th>
+    </tr>
+    {% for f in fish %}
+    <tr>
+      <td>
+        <a href="{{ url_for('info.edit_fish', fish_id=f.id)}}">{{ f.id }}</a>
+      </td>
+      <td>{{ f.fishname }}</td>
+      <td>{{ f.season }}</td>
+      <td class="etc">{{ f.etc }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
 
 {% endblock %}

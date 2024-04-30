@@ -1,17 +1,27 @@
 {% extends 'info/base.html' %} {% block title %}사용자 편집란{% endblock %}
 {%block content %}
-<h2>사용자 편집</h2>
+<div>
+  <h2>사용자 편집</h2>
 
-<form
-  action="{{ url_for('info.edit_fish', fish_id=fish.id)}}"
-  method="POST"
-  novalidate="novalidate"
->
-  <p>{{ form.fishname.label }} {{ form.fishname(placeholder='생선명')}}</p>
-  <p>{{ form.season.label }} {{ form.season(placeholder='계절')}}</p>
-  <p class="etc">{{ form.etc.label }} {{ form.etc(placeholder='비고')}}</p>
-</form>
-<form action="{{ url_for('info.delete_fish', fish_id=fish.id) }}" method="POST">
-  <input type="submit" value="삭제" />
-</form>
+  <!-- <form
+    action="{{ url_for('info.edit_fish', fish_id=fish.id)}}"
+    method="POST"
+    novalidate="novalidate"
+  >
+
+  </form> -->
+  <form action="{{ url_for('info.edit_fish', fish_id=fish.id) }}" method="POST">
+    <p>{{ form.fishname.label }} {{ form.fishname(placeholder='생선명')}}</p>
+    <p>{{ form.season.label }} {{ form.season(placeholder='계절')}}</p>
+    <p class="etc">{{ form.etc.label }} {{ form.etc(placeholder='비고')}}</p>
+
+    <input type="submit" value="수정" />
+  </form>
+  <form
+    action="{{ url_for('info.delete_fish', fish_id=fish.id) }}"
+    method="POST"
+  >
+    <input type="submit" value="삭제" />
+  </form>
+</div>
 {% endblock%}

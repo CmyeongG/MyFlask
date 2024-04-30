@@ -43,26 +43,49 @@ def create_fish():
     return redirect(url_for('info.create_fish'))
   return render_template('info/create.html', form=form)
 
-@info.route('/<fish_id>', methods=['GET','POST'])
+@info.route('/edit/<fish_id>', methods=['GET','POST'])
 def edit_fish(fish_id):
-    form = FishForm()
+  form = FishForm()
 
-    fish = Fish.query.filter_by(id=fish_id).first()
+  fish=Fish.query.filter_by(id=fish_id).first()
 
-    if form.validate_on_submit():
-        fish.fishname = form.fishname.data
-        fish.season = form.season.data
-        fish.etc = form.etc.data
-        db.session.add(fish)
-        db.session.commit()
-        return redirect(url_for('info.edit_user'))
+  form.fishname.data = fish.fishname
+  form.season.data = fish.season
+  form.etc.data = fish.etc
+
+  if request.method == 'POST':
+      if fish:
+          
+          fish.fishname = request.form['fishname']
+          fish.season = request.form['season']
+          fish.etc = request.form['etc']
+          
+          db.session.add(fish)
+          db.session.commit()
+
+
+      return redirect(url_for('info.index'))
     
-    return render_template('info/edit.html', fish=fish, form=form)
+  return render_template('info/edit.html', fish=fish, form=form)
 
-@info.route('/<fish_id>/delete', methods=["POST","GET"])
+
+@info.route('/delete/<fish_id>', methods=["POST","GET"])
 def delete_fish(fish_id):
     fish=Fish.query.filter_by(id=fish_id).first()
     db.session.delete(fish)
     db.session.commit()
     return redirect(url_for('info.index'))
 
+
+# @info.route('/update/<fish_id>', methods=['POST', 'GET'])
+# def update_fish(fish_id):
+
+#     fish=Fish.query.filter_by(id=fish_id).first()
+#     if request.method == 'POST':
+#       fish.fishname = request.form['fishname']
+#       fish.season = request.form['season']
+#       fish.etc = request.form['etc']
+#       db.session.add(fish)
+#       db.session.commit()
+#       return redirect(url_for('info.index'))
+    

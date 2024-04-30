@@ -9,10 +9,14 @@
 *,
 html {
   font-family: KCC-Hanbit;
+  box-sizing: border-box;
 }
 
 html {
-  background-color: deepskyblue;
+  background-image: url(./fish3.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 table {
@@ -23,7 +27,12 @@ table {
 table,
 th,
 td {
-  text-align: center;
   width: auto;
   border: 1px solid #000000;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  text-align: center;
 }
